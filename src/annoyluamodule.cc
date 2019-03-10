@@ -138,10 +138,11 @@ public:
     Impl* self = getAnnoy(L, 1);
     const char* filename = luaL_checkstring(L, 2);
     bool prefault = true;
+    bool saveonly = true;
     if (nargs >= 3) {
       prefault = lua_toboolean(L, 3);
     }
-    self->save(filename, prefault);
+    self->save(filename, prefault, saveonly);
     lua_pushboolean(L, true);
     return 1;
   }

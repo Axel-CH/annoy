@@ -19,6 +19,9 @@ class AnnoyIndex {
   void build(int q) {
     ptr->build(q);
   };
+  bool save(const char* filename, bool prefault, bool saveonly) {
+    return ptr->save(filename, prefault, saveonly);
+  };
   bool save(const char* filename, bool prefault) {
     return ptr->save(filename, prefault);
   };

@@ -68,7 +68,7 @@ public:
   };
   void build(int q) { _index.build(q); };
   void unbuild() { _index.unbuild(); };
-  bool save(const char* filename, bool prefault) { return _index.save(filename, prefault); };
+  bool save(const char* filename, bool prefault, bool saveonly) { return _index.save(filename, prefault, saveonly); };
   void unload() { _index.unload(); };
   bool load(const char* filename, bool prefault) { return _index.load(filename, prefault); };
   float get_distance(int32_t i, int32_t j) const { return _index.get_distance(i, j); };

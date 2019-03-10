@@ -717,7 +717,7 @@ class AnnoyIndexInterface {
   virtual void add_item(S item, const T* w) = 0;
   virtual void build(int q) = 0;
   virtual void unbuild() = 0;
-  virtual bool save(const char* filename, bool prefault=false) = 0;
+  virtual bool save(const char* filename, bool prefault=false, bool saveonly=false) = 0;
   virtual void unload() = 0;
   virtual bool load(const char* filename, bool prefault=false) = 0;
   virtual T get_distance(S i, S j) const = 0;
@@ -867,7 +867,7 @@ public:
     _n_nodes = _n_items;
   }
 
-  bool save(const char* filename, bool prefault=false) {
+  bool save(const char* filename, bool prefault=false, bool saveonly=false) {
     if (_on_disk) {
       return true;
     } else {
@@ -881,8 +881,13 @@ public:
       fwrite(_nodes, _s, _n_nodes, f);
       fclose(f);
 
-      unload();
-      return load(filename, prefault=false);
+      if(saveonly){
+        return true;
+      } else {
+        unload();
+        return load(filename, prefault=false);
+      }
+
     }
   }
 
